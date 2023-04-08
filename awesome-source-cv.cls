@@ -1,6 +1,6 @@
 %% Copyright 2016 Christophe Roger
 %
-% Author: 
+% Author:
 % Christophe Roger (Darwiin)
 %
 % This work may be distributed and/or modified under the
@@ -12,10 +12,10 @@
 % version 2005/12/01 or later.
 %
 % This work has the LPPL maintenance status `maintained'.
-% 
+%
 % The Current Maintainer of this work is M. C. Roger.
 %
-% This work consists of the files awesome-source-cv.cls 
+% This work consists of the files awesome-source-cv.cls
 
 \ProvidesClass{awesome-source-cv}[2016/11/05 v1.6.1 Awesome Source CV Class]
 
@@ -60,10 +60,11 @@
 \RequirePackage{titlesec}
 \RequirePackage{array}
 \RequirePackage{enumitem}
-\RequirePackage{longtable} 	
+\RequirePackage{longtable}
 \RequirePackage{etoolbox}
 \RequirePackage{tikz}
 \RequirePackage[skins]{tcolorbox}
+\RequirePackage{datetime2}
 
 
 \DeclareUnicodeCharacter{00E9}{\'{e}}
@@ -100,7 +101,7 @@
 \titlespacing{\section}{0pt}{2pt}{2pt}
 
 % Configure list
-\setlist[itemize,1]{label=\faAngleRight, nosep, leftmargin=2em} 
+\setlist[itemize,1]{label=\faAngleRight, nosep, leftmargin=2em}
 
 % Setup Array : new column type
 \newcolumntype{R}[1]{>{\hfill}m{#1}}
@@ -116,22 +117,22 @@
 %                Configuration for fonts
 %-------------------------------------------------------------------------------
 % Set the FontAwesome font to be up-to-date.
-\newfontfamily\FA[Path=fonts/]{FontAwesome}
+%\newfontfamily\FA[Path=fonts/]{FontAwesome}
 
 % Define font to use according to localFont option
 \ifundef{\@local}
 {
   %\setmainfont[BoldFont = Helvetica Neue, ItalicFont=Helvetica Neue Thin Italic ,SmallCapsFont = Helvetica Neue Light]{Helvetica Neue Thin}
   \setmainfont[
-    BoldFont = Source Sans Pro Semibold, 
+    BoldFont = Source Sans Pro Semibold,
     ItalicFont= Source Sans Pro Light Italic,
     SmallCapsFont = Source Sans Pro]{Source Sans Pro Light}
 }
 {
   \setmainfont[
-    Path = fonts/, 
-    BoldFont = SourceSansPro-Semibold, 
-    ItalicFont = SourceSansPro-LightIt, 
+    Path = fonts/,
+    BoldFont = SourceSansPro-Semibold,
+    ItalicFont = SourceSansPro-LightIt,
     SmallCapsFont = SourceSansPro-Regular]{SourceSansPro-Light}
 }
 
@@ -144,7 +145,7 @@
 
 % Font Awesome icons aliases
 \newcommand{\mailSymbol}{\faEnvelope}
-\newcommand{\mailSymbolO}{\faEnvelopeO} 
+\newcommand{\mailSymbolO}{\faEnvelopeO}
 \newcommand{\locationSymbol}{\faMapMarker}
 \newcommand{\infoSymbol}{\faInfo}
 \newcommand{\homeSymbol}{\faLink}
@@ -162,7 +163,7 @@
   %\tikz[baseline]\node[anchor=base,draw=darkGrey!70,rounded corners=0.5ex,inner xsep=1ex,inner ysep =0.55ex,text height=1.3ex,text depth=.25ex]{#1};
 \begin{tikzpicture}
 	\node[anchor=base,draw=darkGrey!70,rounded corners=0.5ex,inner xsep=1ex,inner ysep =0.55ex,text height=1.3ex,text depth=.25ex]{#1};
-\end{tikzpicture}	  
+\end{tikzpicture}
 }
 
 % Render author's name
@@ -220,7 +221,7 @@
 
 % Render author's viadeo(optional)
 % Usage: \viadeo{<viadeo-nick>}
-\newcommand*{\viadeo}[1]{\sociallink{\viadeoSymbol}{http://www.viadeo.com/fr/profile/#1}{viadeo.com/fr/profile/#1}} 
+\newcommand*{\viadeo}[1]{\sociallink{\viadeoSymbol}{http://www.viadeo.com/fr/profile/#1}{viadeo.com/fr/profile/#1}}
 
 % Render author's github (optional)
 % Usage: \github{<github-nick>}
@@ -233,7 +234,7 @@
 
 % Render author's mobile phone (optional)
 % Usage: \smartphone{<mobile phone number>}
-\newcommand*\smartphone[1]{\socialtext{\mobileSymbol}{#1}}    
+\newcommand*\smartphone[1]{\socialtext{\mobileSymbol}{#1}}
 
 % Render author's tagline
 \newcommand\resumetitle[1]{
@@ -248,7 +249,7 @@
 	 \par{
 	 	\bigskip\center{\Large \color{accentcolor}\textsc{#1}\color{Black}}\par
 	 }
-	 \bigskip    
+	 \bigskip
   }
 }
 
@@ -260,15 +261,15 @@
 % Needs \@firstname, \@lastname and \@tagline to be defined
 \newcommand*{\makecvheader}{
 	\ifundef{\@alternative}{
-		 
+
 		\ifundef{\@photodiameter}{
-			\begin{minipage}{\linewidth}    	      	
+			\begin{minipage}{\linewidth}
 		}{
-			\begin{minipage}{\dimexpr\linewidth-\@photodiameter-2em}        	
+			\begin{minipage}{\dimexpr\linewidth-\@photodiameter-2em}
 		}
-				\color{accentcolor}\user{\@firstname}{\@lastname}\color{black} \vspace*{0.3cm}\\				 	
+				\color{accentcolor}\user{\@firstname}{\@lastname}\color{black} \vspace*{0.3cm}\\
 				\small{\@socialinfo}
-			\end{minipage}  
+			\end{minipage}
 		\ifdef{\@photodiameter}{
 			\begin{minipage}{\@photodiameter}
 				\begin{tikzpicture}%
@@ -277,21 +278,21 @@
 						\includegraphics[width=2.5cm]{\@photo}
 					};
 				}]{ };
-				\end{tikzpicture}				
+				\end{tikzpicture}
 			\end{minipage}
 		}{}
 	    \resumetitle{\@tagline}
 	}{
 	    \ifundef{\@photodiameter}{
-			\begin{minipage}{\linewidth}     	
+			\begin{minipage}{\linewidth}
 	    }{
-			\begin{minipage} {\dimexpr\linewidth-\@photodiameter-2em}    	
+			\begin{minipage} {\dimexpr\linewidth-\@photodiameter-2em}
 	    }
 				\user{\@firstname}{\@lastname} \vspace*{0.3cm}\\
 				\resumetitle{\@tagline}
 				\smallskip\\
 				\small{\@socialinfo}
-			\end{minipage}  	    
+			\end{minipage}
 		\ifdef{\@photodiameter}{
 			\begin{minipage}{\@photodiameter}
 %				\begin{tikzpicture}%
@@ -300,19 +301,19 @@
 %						\includegraphics[width=2.5cm]{\@photo}
 %					};
 %				}]{ };
-%				\end{tikzpicture}		
+%				\end{tikzpicture}
 				\begin{tikzpicture}%
 				\node[text=white, minimum width=2.8cm, minimum height=2.8cm, %minimum size=2.8cm,
 				path picture={\node at (path picture bounding box.center){
 						\includegraphics[width=2.5cm]{\@photo}
 					};
 				}]{ };
-				\end{tikzpicture}			
-			\end{minipage} 			
+				\end{tikzpicture}
+			\end{minipage}
 %      \begin{minipage}{\@photodiameter}
 %      	\tikz\path[fill overzoom image={\@photo}]circle[radius=0.5\linewidth];
 %      \end{minipage}
-      			     	
+
 		}{}
 		\bigskip
 	}
@@ -347,7 +348,7 @@
 % Render a skill in the skills environment
 % Usage: \skill{<skill>}{<level>}
 \newcommand\skill[2]{
-  \textsc{#1}    & \foreach \x in {1,...,5}{{\color{accentcolor!80} \ifnumgreater{\x}{#2}{\faCircleO}{\faCircle}}\enspace } 
+  \textsc{#1}    & \foreach \x in {1,...,5}{{\color{accentcolor!80} \ifnumgreater{\x}{#2}{\faCircleO}{\faCircle}}\enspace }
 }
 
 \newcolumntype{E}{>{\raggedright\arraybackslash}p{\rightcolumnlength}}
@@ -360,7 +361,7 @@
 }
 
 % Render an experience in the experiences environment
-% Usage: 
+% Usage:
 % \experience
 %  {<End date>}      {<Title>}{<Enterprise>}{<Country>}
 %  {<Start date}     {
@@ -376,7 +377,7 @@
   }
 
 % Render a consultant experience in the experiences environment
-% Usage: 
+% Usage:
 % \consultantexperience
 %  {<End date>}      {<Consultant title>}{<Consulting Enterprise>}{<Country>}
 %  {<Start date}     {<Client title>}{<Client business unit>}
