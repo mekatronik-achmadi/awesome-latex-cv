@@ -153,6 +153,7 @@
 \newcommand{\linkedinSymbol}{\faLinkedin}
 \newcommand{\mobileSymbol}{\faMobilePhone}
 \newcommand{\githubSymbol}{\faGithub}
+\newcommand{\gitlabSymbol}{\faGitlab}
 
 \newcommand\link[2]{\color{linkcolor}\href{#1}{#2}\color{Black} }
 \newcommand\important[1]{\textbf #1}
@@ -226,6 +227,10 @@
 % Render author's github (optional)
 % Usage: \github{<github-nick>}
 \newcommand*{\github}[1]{\sociallink{\githubSymbol}{https://www.github.com/#1}{github.com/#1}}           % Github icon + URL
+
+% Render author's gitlab (optional)
+% Usage: \gitlab{<github-nick>}
+\newcommand*{\gitlab}[1]{\sociallink{\gitlabSymbol}{https://www.gitlab.com/#1}{gitlab.com/#1}}           % Gitlab icon + URL
 
 % Render author's email (optional)
 % Usage: \email{<email adress>}
